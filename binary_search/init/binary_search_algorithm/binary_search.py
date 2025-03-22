@@ -1,4 +1,3 @@
-
 def binary_search_recursive(array, item, begin=0, end=None):
     if end is None:
         end = len(array) - 1
@@ -6,13 +5,9 @@ def binary_search_recursive(array, item, begin=0, end=None):
         middle = (end + begin) // 2
         if array[middle] == item:
             return middle
-        if item < array[middle]: #present in the left array
+        if item < array[middle]:
             return binary_search_recursive(array, item, begin, middle - 1)
-        else: #present in the right array
+        else: 
             return binary_search_recursive(array, item, middle + 1, end)
-    return None # item element is not present in the array
+    return None 
 
-if __name__== '__main__':
-    lista = [1, 2, 3, 4, 5, 6]
-    index = binary_search_recursive(lista, 4)
-    print(index)
