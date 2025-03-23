@@ -1,27 +1,32 @@
 from typing import List
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        seen = {}  # Dicionário para armazenar os números e seus índices(hashmap)
+    def twoSum_hashMapOne(self, nums: List[int], target: int) -> List[int]:
+        seen = {}  
         for i, num in enumerate(nums):
-            complement = target - num  # Complemento que falta para atingir o target
+            complement = target - num  
             if complement in seen:
-                return [seen[complement], i]  # Retorna os índices
-            seen[num] = i  # Armazena o número e seu índice
-        return []  # Caso não haja solução
+                return [seen[complement], i]  
+            seen[num] = i 
+        return []  
     
-    def twoSum_mine(self, nums: List[int], target: int) -> List[int]:
+    def twoSum_bruteForce(self, nums: List[int], target: int) -> List[int]:
         for i in range(0, len(nums)):
             for j in range(1, len(nums)):
                 soma = nums[i] + nums[j]
                 if soma == target and i<j:
                     return [i, j]
-             
+    def twoSum_hashmapTwo(self, nums: List[int], target: int) -> List[int]:
+        dic = {} 
+        for idx, i in enumerate(nums):  
+            if dic.get(i) is not None:
+                return[dic.get(i), idx]
+            dic[target - i] = idx
         return None
     
   
 
 if __name__ == '__main__':
     solution = Solution()
-    result = solution.twoSum_mine([3, 2, 4], 5)
-    print(result)  # Esperado: [1, 2] (2 + 4 = 6)
+    result = solution.twoSum_hashmapTwo([3, 2, 4], 6)
+    print(result)  # Output: [1, 2] (2 + 4 = 6)
